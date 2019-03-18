@@ -5,6 +5,7 @@ import fr.pizzeria.model.Pizza;
 
 public class PizzeriaAdminConsoleApp {
 
+public static Scanner tryone = new Scanner(System.in);	
 public static	Pizza []array1={
 			new Pizza (0,"PEP","Pépéroni" ,12.50),
 			new Pizza (1,"MAR", "Margherita", 14.00),
@@ -19,7 +20,7 @@ public static	Pizza []array1={
     //show the menu
 	public static void showmenu()
 	{
-		System.out.println("***** Pizzeria Administration *****");
+		submenu();
 		System.out.println("1. Lister les pizzas");
 		System.out.println("2. Ajouter une nouvelle pizza");
 		System.out.println("3. Mettre à jour une pizza");
@@ -27,36 +28,79 @@ public static	Pizza []array1={
 		System.out.println("99. Sortir");
 	}
 	
+	public static void submenu()
+	{
+		System.out.println("***** Pizzeria Administration *****");
+	}
+	
 	public static void clearScreen() {  
 	   // System.out.print("\033[H\033[2J");  
 	    //System.out.flush();  
+		
+		for (int i = 0; i < 20; ++i) 
+			{
+			System.out.println();
+			}
 		
 	}  
 public static void listerlespizza()
 {
 	clearScreen();
-	
+	submenu();
 	for(int i=0; i<array1.length;i++)
 	{
-		PizzeriaAdminConsoleApp.array1[i].afficher();
+		array1[i].afficher();
 	}
 }
 
 public static void addpizza()
 {
 	clearScreen();
+	submenu();
+	String codi, label;
+	double price;
+	System.out.println("enter three letter code");
+	codi = tryone.next();
+	System.out.println("enter label code");
+	label = tryone.next();
+	System.out.println("enter price code");
+	price = tryone.nextDouble();
+	for(int i=0;i<array1.length;i++)
+	{
+		if (array1[i]==null)
+		{
+			array1[i]=new Pizza(codi,label,price);
+			break;
+		}
+	}
+	System.out.println("\n");
+	listerlespizza();
+		
+	
 	
 }
 
 public static void deletepizza()
 {
 	clearScreen();
-	
+	submenu();
 }
 
 public static void updatepizza()
 {
 	clearScreen();
+	showmenu();
+	System.out.println("which pizz you want to modify, give the id");
+	int c= tryone.nextInt();
+	for(int i = 0; i<array1.length; i++)
+	{
+		if(array1[i].equals(c))
+		{
+			System.out.println(array1[i]);
+			System.out.println("Is this is the entry you wanna modify");
+		}
+	}
+	
 	
 }
 
@@ -71,7 +115,7 @@ public static void sortirpizza()
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner tryone = new Scanner(System.in);
+		
 		
 		showmenu();
         boolean game= false;
