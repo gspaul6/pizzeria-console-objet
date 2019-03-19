@@ -3,18 +3,13 @@ package fr.pizzeria.console;
 import java.lang.reflect.Array;
 import java.util.Scanner;
 import fr.pizzeria.model.Pizza;
+import persistence.PizzaMemDao;
 
 public class PizzeriaAdminConsoleApp {
 
 	public static Scanner tryone = new Scanner(System.in);
-	public static Pizza[] array1 = { new Pizza(0, "PEP", "Pépéroni", 12.50), 
-			new Pizza(1, "MAR", "Margherita", 14.00),
-			new Pizza(2, "REIN", "La Reine", 11.50), 
-			new Pizza(3, "FRO", "La 4 fromages", 12.00),
-			new Pizza(4, "CAN", "La cannibale", 12.50), 
-			new Pizza(5, "SAV", "La savoyarde", 13.00),
-			new Pizza(6, "ORI", "L’orientale", 13.50), 
-			new Pizza(7, "IND", "L’indienne", 14.00) };
+   public static PizzaMemDao Napoli =new PizzaMemDao();
+	
 
 	// show the menu
 	public static void showmenu() {
@@ -43,9 +38,7 @@ public class PizzeriaAdminConsoleApp {
 	public static void listerlespizza() {
 		clearScreen();
 		submenu();
-		for (int i = 0; i < array1.length; i++) {
-			array1[i].afficher();
-		}
+		Napoli.findAllPizzas();
 	}
 
 	public static void addpizza() {
@@ -59,13 +52,8 @@ public class PizzeriaAdminConsoleApp {
 		label = tryone.next();
 		System.out.println("enter price code");
 		price = tryone.nextDouble();
-		for (int i = 0; i < array1.length; i++) {
-			
-				verify(array1);
-				array1[i] = new Pizza(codi, label, price);
-				break;
-			
-		}
+		Pizza Hitl=new Pizza(codi,label,price);
+        Napoli.saveNewPizza(Hitl);
 		System.out.println("\n");
 		listerlespizza();
 
@@ -77,14 +65,7 @@ public class PizzeriaAdminConsoleApp {
 		listerlespizza();
 		System.out.println("Enter the code of the pizza you wanna delete");
 		String g=tryone.next();
-		for(int k=0; k<array1.length;k++)
-		{
-			if(array1[k].getCode().equalsIgnoreCase(g))
-			{
-				array1[k]=null;
-			break;
-			}
-		}
+		Napoli.deletePizza(g);
 		
 	}
 
@@ -92,19 +73,21 @@ public class PizzeriaAdminConsoleApp {
 		clearScreen();
 		listerlespizza();
 		boolean trump = false;
+		Pizza tomato=new Pizza();
 		while (!trump) {
 			boolean gameover = false;
 			if (!gameover) {
 				System.out.println("which pizz you want to modify, give the id");
 				int c = tryone.nextInt();
-				for (int i = 0; i < array1.length; i++) {
-					if (array1[i].getId()==c) {
-						System.out.println(array1[i].toString());
+				
+				for (int i = 0; i <Napoli.findAllPizzas().length; i++) {
+					if (Napoli.findAllPizzas()[i].getId()==c) {
+						System.out.println(Napoli.findAllPizzas()[i].toString());
 						System.out.println("Is this is the entry you wanna modify, answer yes or no to exit");
 						String ans = tryone.next().toLowerCase();
 						if (ans.equalsIgnoreCase("yes")) {
 							listerlespizza();
-									System.out.print(array1[i].toString());
+									System.out.print(Napoli.findAllPizzas()[i].toString());
 									System.out.println("which parameter you wanna modify");
 									System.out.println();
 									System.out.println("Enter 1 for code of it");
@@ -118,7 +101,9 @@ public class PizzeriaAdminConsoleApp {
 									switch (e) {
 									case 1:
 										System.out.println("Enter a three letter word for your code for Pizza");
-										array1[i].setCode(tryone.next());
+										String r=tryone.next();
+										
+									   Napoli.updatePizza1(r,tomato);
 										listerlespizza();
 										sortirpizza();
 										trump = true;
@@ -127,7 +112,9 @@ public class PizzeriaAdminConsoleApp {
 
 									case 2:
 										System.out.println("Enter a label  for your Pizza");
-										array1[i].setLibelle(tryone.next());
+										String s=tryone.next();
+										
+										   Napoli.updatePizza1(s,tomato);
 										listerlespizza();
 										sortirpizza();
 										trump = true;
@@ -136,7 +123,9 @@ public class PizzeriaAdminConsoleApp {
 
 									case 3:
 										System.out.println("Enter a price  for your Pizza");
-										array1[i].setPrix(tryone.nextDouble());
+										double t =tryone.nextDouble();
+										
+										   Napoli.updatePizza2(t,tomato);
 										listerlespizza();
 										sortirpizza();
 										trump = true;
