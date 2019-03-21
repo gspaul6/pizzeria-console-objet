@@ -1,12 +1,13 @@
 package persistence;
 
+import java.util.List;
+
 import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao {
-	Pizza[] findAllPizzas();
+	List<Pizza> findAllPizzas();
 	void saveNewPizza(Pizza pizza);
-	void updatePizza1(String codePizza, Pizza pizza);
-	void updatePizza2(double price, Pizza pizza);
+	void updatePizza(String codePizza, Pizza pizza);
 	void deletePizza(String codePizza);
 	Pizza findPizzaByCode(String codePizza);
 	boolean pizzaExists(String codePizza);
