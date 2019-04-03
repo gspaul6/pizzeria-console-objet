@@ -129,18 +129,15 @@ private String pass;
 			// Etape 3 - Création de la connexion
 			Connection uneConnexion = DriverManager.getConnection(jdbcUrl, "root", "");
 			Statement st = uneConnexion.createStatement();
-			ResultSet rs = st.executeQuery("select * from pizza");
-			while (rs.next()){
-				if (codePizza==pizza.getCode()& codePizza==rs.getString("codepizza"));
-				{
-					PreparedStatement updatePizzaSt = uneConnexion.prepareStatement("UPDATE PIZZA SET(codepizza=?,libelle=?,prix=?) where codepizza=?");
+		
+					PreparedStatement updatePizzaSt = uneConnexion.prepareStatement("UPDATE PIZZA SET codepizza=?,libelle=?,prix=?  where codepizza=?");
 					updatePizzaSt.setString(1, pizza.getCode());
 					updatePizzaSt.setString(2, pizza.getLibelle());
 					updatePizzaSt.setDouble(3, pizza.getPrix());
-					updatePizzaSt.setString(4, pizza.getCode());
+					updatePizzaSt.setString(4, codePizza);
 					updatePizzaSt.executeUpdate();
-				}
-			}
+				
+			
 
 
 			

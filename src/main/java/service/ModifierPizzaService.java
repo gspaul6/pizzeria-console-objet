@@ -36,12 +36,12 @@ public class ModifierPizzaService {
 		double prix2 = Double.parseDouble(price);
 
 		Pizza Hitl = new Pizza(codi, label, prix2);
-		tim.updatePizza(codi,Hitl);
+		tim.updatePizza(g,Hitl);
 		System.out.println("\n");
-
-		for (int i = 0; i < tomtom.size(); i++) {
-			if (tomtom.get(i) != null) {
-				System.out.println(tomtom.get(i));
+		List<Pizza> timtim = tim.findAllPizzas();
+		for (int i = 0; i < timtim.size(); i++) {
+			if (timtim.get(i) != null) {
+				System.out.println(timtim.get(i));
 			}
 		}
 	}
