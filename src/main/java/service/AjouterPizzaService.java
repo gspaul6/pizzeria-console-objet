@@ -9,7 +9,7 @@ import fr.pizzeria.model.Pizza;
 public class AjouterPizzaService extends MenuService{
 
 	@Override
-	public void executeUC(Scanner scanner, PizzaMemDao tim ) {
+	public void executeUC(Scanner scanner, PizzaBddDao tim ) {
 		// TODO Auto-generated method stub
 		
 		String codi, label;

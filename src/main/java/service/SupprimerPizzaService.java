@@ -9,7 +9,7 @@ import java.util.Scanner;
 import fr.pizzeria.model.Pizza;
 
 public class SupprimerPizzaService {
-	public void executeUC(Scanner scanner, PizzaMemDao tim) {
+	public void executeUC(Scanner scanner, PizzaBddDao tim) {
 		// TODO Auto-generated method stub
 		List<Pizza> tomtom = tim.findAllPizzas();
         Iterator<Pizza>tom=tomtom.iterator();

@@ -1,15 +1,24 @@
 package fr.pizzeria.console;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.lang.reflect.Array;
 import java.util.Scanner;
+
+import fr.pizzeria.model.DataAccessException;
 import fr.pizzeria.model.Pizza;
+import persistence.PizzaBddDao;
 import persistence.PizzaMemDao;
 import service.*;
 
 public class PizzeriaAdminConsoleApp {
 
 	public static Scanner tryone = new Scanner(System.in);
-   public static PizzaMemDao Napoli =new PizzaMemDao();
+   public static PizzaBddDao Napoli =new PizzaBddDao();
 	
 
 	// show the menu
@@ -19,6 +28,7 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("2. Ajouter une nouvelle pizza");
 		System.out.println("3. Mettre à jour une pizza");
 		System.out.println("4. Supprimer une pizza");
+		System.out.println("5. Save in the following in Database");
 		System.out.println("99. Sortir");
 	}
 
@@ -45,12 +55,15 @@ public class PizzeriaAdminConsoleApp {
 	
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException{
 		// TODO Auto-generated method stub
 
 		showmenu();
 		boolean game = false;
 		while (!game) {
+			try {
+				
+			
 			System.out.println("Enter your choice");
 			int a = tryone.nextInt();
 			switch (a) {
@@ -85,6 +98,13 @@ public class PizzeriaAdminConsoleApp {
 				mim.executeUC(tryone, Napoli);
 				game = true;
 				break;
+			
+			case 5:
+				clearScreen();
+				submenu();
+				sortirpizza();
+				game = true;
+				break;
 
 			case 99:
 				clearScreen();
@@ -92,6 +112,10 @@ public class PizzeriaAdminConsoleApp {
 				sortirpizza();
 				game = true;
 				break;
+			}
+			} catch (DataAccessException e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 
 		}

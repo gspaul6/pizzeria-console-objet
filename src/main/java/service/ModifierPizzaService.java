@@ -10,7 +10,7 @@ import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaService {
 
-	public void executeUC(Scanner scanner, PizzaMemDao tim) {
+	public void executeUC(Scanner scanner, PizzaBddDao tim) {
 		List<Pizza> tomtom = tim.findAllPizzas();
 		Iterator<Pizza> tom = tomtom.iterator();
 		{
@@ -20,7 +20,7 @@ public class ModifierPizzaService {
 			}
 		}
 
-		System.out.println("Enter the code of the pizza you wanna delete");
+		System.out.println("Enter the code of the pizza you wanna modify");
 		String g = scanner.next();
 		// tim.deletePizza(g);
 
@@ -29,14 +29,14 @@ public class ModifierPizzaService {
 		String price;
 		System.out.println("enter three letter code");
 		codi = scanner.next();
-		System.out.println("enter label code");
+		System.out.println("enter label");
 		label = scanner.next();
-		System.out.println("enter price code");
+		System.out.println("enter price ");
 		price = scanner.next();
 		double prix2 = Double.parseDouble(price);
 
 		Pizza Hitl = new Pizza(codi, label, prix2);
-		tim.saveNewPizza(Hitl);
+		tim.updatePizza(codi,Hitl);
 		System.out.println("\n");
 
 		for (int i = 0; i < tomtom.size(); i++) {

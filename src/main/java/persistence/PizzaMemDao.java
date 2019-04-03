@@ -69,7 +69,7 @@ public class PizzaMemDao implements IPizzaDao {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < this.pizza.size(); i++)
 			if (this.pizza.get(i)!=null && this.pizza.get(i).getCode().equals(codePizza)) {
-				System.out.println("The pizza you was searching for is here-->" + this.pizza.get(i).toString());
+				System.out.println("The pizza you are searching for, is here-->" + this.pizza.get(i).toString());
 			}
 		return null;
 	}
