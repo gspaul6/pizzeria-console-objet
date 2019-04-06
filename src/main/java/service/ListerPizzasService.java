@@ -15,7 +15,7 @@ import fr.pizzeria.model.Pizza;
 
 public class ListerPizzasService {
 
-	public void executeUC(Scanner scanner, PizzaBddDao tim) {
+	public void executeUC(Scanner scanner, IPizzaDao tim) {
 		// TODO Auto-generated method stub
 
 		List<Pizza> tomtom = tim.findAllPizzas();

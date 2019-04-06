@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaMemDao implements IPizzaDao {
@@ -12,15 +13,16 @@ public class PizzaMemDao implements IPizzaDao {
 
 	public PizzaMemDao() {
 		List<Pizza> array1 = new ArrayList<>();
-		array1.add( new Pizza(0, "PEP", "Pépéroni", 12.50));
-		array1.add( new Pizza(1, "MAR", "Margherita", 14.00));
-		array1.add(  new Pizza(2, "REIN", "La Reine", 11.50));
-		array1.add(  new Pizza(3, "FRO", "La 4 fromages", 12.00));
-		array1.add(  new Pizza(4, "CAN", "La cannibale", 12.50));
-		array1.add(  new Pizza(5, "SAV", "La savoyarde", 13.00));
-		array1.add(  new Pizza(6, "ORI", "L’orientale", 13.50));
-		array1.add(  new Pizza(7, "IND", "L’indienne", 14.00));
+		array1.add( new Pizza(0, "PEP", "Pépéroni", 12.50,CategoriePizza.VIANDE));
+		array1.add( new Pizza(1, "MAR", "Margherita", 14.00,CategoriePizza.SANS_VIANDE));
+		array1.add(  new Pizza(2, "REIN", "La Reine", 11.50,CategoriePizza.VIANDE));
+		array1.add(  new Pizza(3, "FRO", "La 4 fromages", 12.00,CategoriePizza.SANS_VIANDE));
+		array1.add(  new Pizza(4, "CAN", "La cannibale", 12.50,CategoriePizza.VIANDE));
+		array1.add(  new Pizza(5, "SAV", "La savoyarde", 13.00,CategoriePizza.POISSON));
+		array1.add(  new Pizza(6, "ORI", "L’orientale", 13.50,CategoriePizza.VIANDE));
+		array1.add(  new Pizza(7, "IND", "L’indienne", 14.00,CategoriePizza.SANS_VIANDE));
 		this.pizza = array1;
+		
 	}
 
 	@Override
@@ -31,22 +33,36 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public void saveNewPizza(Pizza pizza) {
 		// TODO Auto-generated method stub
-		
+//		int i = this.pizza.lastIndexOf(this.pizza.size()-1);
+//		++i;
+		pizza.setId(this.pizza.size());
+	
 			this.pizza.add(pizza);
+			
 	}
 
 	
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		// TODO Auto-generated method stub
-		Iterator<Pizza> temp3 = this.pizza.iterator();
-		while (temp3.hasNext()) {
-			 pizza = temp3.next();
-			if (pizza.getCode().equals(codePizza)){
-				temp3.remove();
-			}
+//		Iterator<Pizza> temp3 = this.pizza.iterator();
+//		while (temp3.hasNext()) {
+//			Pizza p = temp3.next();
+//			if (p.getCode().equals(codePizza)){
+//				//this.saveNewPizza(pizza);
+//				p.setCode(pizza.getCode());
+//				p.setLibelle(pizza.getLibelle());
+//				p.setPrix(pizza.getPrix());
+//				p.setCategorie(pizza.getCategorie());
+//			}
+//		}
+		if(pizzaExists(codePizza))
+		{Pizza tmp= this.findPizzaByCode(codePizza);
+		int i = this.pizza.indexOf(tmp);
+		this.pizza.set(i, pizza);
+			
 		}
-		this.pizza.add(pizza);
+		
 	}
 	
 
@@ -80,9 +96,12 @@ public class PizzaMemDao implements IPizzaDao {
 		for (int i = 0; i < this.pizza.size(); i++) {
 			if (this.pizza.get(i).getCode().equals(codePizza))
 			{
+				
 				return true;
+			
 			} 
 		}
+		
 		return false;
 
 	}

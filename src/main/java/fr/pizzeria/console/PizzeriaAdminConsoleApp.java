@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.model.DataAccessException;
 import fr.pizzeria.model.Pizza;
+import persistence.IPizzaDao;
 import persistence.PizzaBddDao;
 import persistence.PizzaMemDao;
 import service.*;
@@ -18,8 +19,8 @@ import service.*;
 public class PizzeriaAdminConsoleApp {
 
 	public static Scanner tryone = new Scanner(System.in);
-   public static PizzaBddDao Napoli =new PizzaBddDao();
-	
+   public static IPizzaDao Napoli =new PizzaMemDao();
+   //public static IPizzaDao Napoli =new PizzaBddDao();
 
 	// show the menu
 	public static void showmenu() {

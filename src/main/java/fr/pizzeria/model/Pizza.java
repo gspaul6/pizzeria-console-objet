@@ -15,7 +15,23 @@ public class Pizza {
 	private String libelle;
 	private double prix;
 	private static int compteur;
-	
+	public static int getCompteur() {
+		return compteur;
+	}
+
+	public static void setCompteur(int compteur) {
+		Pizza.compteur = compteur;
+	}
+
+	private CategoriePizza categorie;
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
+	}
+
 	/**
 	 * @return id
 	 */
@@ -107,16 +123,38 @@ public Pizza(String code, String libelle, double prix) {
 		this.prix=prix;
 		
 	}
+	public Pizza(int id,String code, String libelle, double prix,CategoriePizza cat) {
+		this.id=id;
+		this.code=code;
+		this.libelle=libelle;
+		this.prix=prix;
+		this.categorie=cat;
+		
+	}
+	
+	public Pizza(String codi, String label, double prix2, CategoriePizza cat) {
+		// TODO Auto-generated constructor stub
+		
+		this.code=codi;
+		this.libelle=label;
+		this.prix=prix2;
+		this.categorie=cat;
+		
+		Pizza.compteur+=1;
+		this.id=Pizza.compteur;
+	}
+
 	/**
 	 * to show everything
 	 */
+	
 	public void afficher()
 	{
 		System.out.println(+this.id+"|"+this.code+"|"+this.libelle+"|"+this.prix );
 	}
 
 	public String toString(){
-		return this.id+"|"+this.code+"|"+this.libelle+"|"+this.prix ;
+		return this.id+"|"+this.code+"|"+this.libelle+"|"+this.prix+"|" +this.categorie;
 		
 	}
 }
