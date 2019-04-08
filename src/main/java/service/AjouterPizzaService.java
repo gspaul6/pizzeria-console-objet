@@ -1,12 +1,11 @@
 package service;
 
-import persistence.*;
-
 import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
+import persistence.IPizzaDao;
 
 public class AjouterPizzaService extends MenuService {
 
@@ -23,7 +22,7 @@ public class AjouterPizzaService extends MenuService {
 		System.out.println("enter price code");
 		price = scanner.next();
 		double prix2 = Double.parseDouble(price);
-		System.out.println("Choose a number fopr the categorie svp");
+		System.out.println("Choose a number for the categorie svp");
 		System.out.println("1. Viande");
 		System.out.println("2. Sans_viande");
 		System.out.println("3. poisson");

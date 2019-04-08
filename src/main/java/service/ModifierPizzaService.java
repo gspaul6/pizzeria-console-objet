@@ -1,13 +1,12 @@
 package service;
 
-import persistence.*;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
+import persistence.IPizzaDao;
 
 public class ModifierPizzaService {
 
@@ -23,9 +22,9 @@ public class ModifierPizzaService {
 
 		System.out.println("Enter the code of the pizza you wanna modify");
 		String g = scanner.next();
-		// tim.deletePizza(g);
-
-		tim.deletePizza(g.toUpperCase());
+		// // tim.deletePizza(g);
+		//
+		// tim.deletePizza(g.toUpperCase());
 		String codi, label;
 		String price;
 		System.out.println("enter three letter code");

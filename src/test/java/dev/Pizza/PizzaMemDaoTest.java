@@ -48,4 +48,17 @@ public class PizzaMemDaoTest {
 		Assert.assertTrue(itIsThere);
 	}
 
+	@Test
+	public void testPizzaExists() {
+		Boolean itWorks = memDao.pizzaExists("PEP");
+		Assert.assertTrue(itWorks);
+	}
+
+	@Test
+	public void testFindPizzaByCode() {
+		Pizza p = memDao.findPizzaByCode("PEP");
+		Boolean itIsAlive = memDao.pizzaExists(p.getCode());
+		Assert.assertTrue(itIsAlive);
+	}
+
 }
