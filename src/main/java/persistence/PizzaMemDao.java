@@ -43,7 +43,6 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
-		// TODO Auto-generated method stub
 		// Iterator<Pizza> temp3 = this.pizza.iterator();
 		// while (temp3.hasNext()) {
 		// Pizza p = temp3.next();
@@ -79,11 +78,13 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
 		// TODO Auto-generated method stub
+		Pizza p = new Pizza();
 		for (int i = 0; i < this.pizza.size(); i++)
 			if (this.pizza.get(i) != null && this.pizza.get(i).getCode().equals(codePizza)) {
+				p = this.pizza.get(i);
 				System.out.println("The pizza you are searching for, is here-->" + this.pizza.get(i).toString());
 			}
-		return null;
+		return p;
 	}
 
 	@Override

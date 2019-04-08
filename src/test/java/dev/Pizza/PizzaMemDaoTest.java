@@ -30,4 +30,22 @@ public class PizzaMemDaoTest {
 		Assert.assertTrue(itExist);
 	}
 
+	@Test
+	public void testDeletePizza() {
+		Pizza pizza = new Pizza("MED", "Meditarian", 17.80, CategoriePizza.POISSON);
+		memDao.saveNewPizza(pizza);
+		memDao.deletePizza(pizza.getCode());
+		Boolean itNotThere = memDao.pizzaExists("MED");
+		Assert.assertFalse(itNotThere);
+	}
+
+	@Test
+	public void testUpdatePizza() {
+		Pizza pizza = new Pizza("LUC", "Lucky", 17.60, CategoriePizza.VIANDE);
+
+		memDao.updatePizza("PEP", pizza);
+		Boolean itIsThere = memDao.pizzaExists(pizza.getCode());
+		Assert.assertTrue(itIsThere);
+	}
+
 }
