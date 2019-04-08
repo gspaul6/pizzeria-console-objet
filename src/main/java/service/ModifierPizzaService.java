@@ -6,11 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaService {
 
-	public void executeUC(Scanner scanner, PizzaBddDao tim) {
+	public void executeUC(Scanner scanner, IPizzaDao tim) {
 		List<Pizza> tomtom = tim.findAllPizzas();
 		Iterator<Pizza> tom = tomtom.iterator();
 		{
@@ -34,9 +35,30 @@ public class ModifierPizzaService {
 		System.out.println("enter price ");
 		price = scanner.next();
 		double prix2 = Double.parseDouble(price);
-
-		Pizza Hitl = new Pizza(codi, label, prix2);
-		tim.updatePizza(g,Hitl);
+		System.out.println("Choose a number fopr the categorie svp");
+		System.out.println("1. Viande");
+		System.out.println("2. Sans_viande");
+		System.out.println("3. poisson");
+		int input1=scanner.nextInt();
+		Pizza Hitl;
+		switch(input1)
+		{
+		case 1:
+			 Hitl=new Pizza(codi,label,prix2,CategoriePizza.VIANDE);
+			 tim.updatePizza(g.toUpperCase(),Hitl);
+			 break;
+			
+		case 2:
+			Hitl=new Pizza(codi,label,prix2,CategoriePizza.SANS_VIANDE);
+			tim.updatePizza(g.toUpperCase(),Hitl);
+		break;
+		case 3:
+			Hitl=new Pizza(codi,label,prix2,CategoriePizza.POISSON);
+			tim.updatePizza(g.toUpperCase(),Hitl);
+			break;
+		}
+		
+		
 		System.out.println("\n");
 		List<Pizza> timtim = tim.findAllPizzas();
 		for (int i = 0; i < timtim.size(); i++) {
