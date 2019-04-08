@@ -1,4 +1,5 @@
 package service;
+
 import persistence.*;
 
 import java.util.List;
@@ -7,12 +8,12 @@ import java.util.Scanner;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class AjouterPizzaService extends MenuService{
+public class AjouterPizzaService extends MenuService {
 
 	@Override
-	public void executeUC(Scanner scanner, IPizzaDao tim ) {
+	public void executeUC(Scanner scanner, IPizzaDao tim) {
 		// TODO Auto-generated method stub
-		
+
 		String codi, label;
 		String price;
 		System.out.println("enter three letter code");
@@ -26,28 +27,26 @@ public class AjouterPizzaService extends MenuService{
 		System.out.println("1. Viande");
 		System.out.println("2. Sans_viande");
 		System.out.println("3. poisson");
-		int input1=scanner.nextInt();
+		int input1 = scanner.nextInt();
 		Pizza Hitl;
-		switch(input1)
-		{
+		switch (input1) {
 		case 1:
-			 Hitl=new Pizza(codi,label,prix2,CategoriePizza.VIANDE);
-			 tim.saveNewPizza(Hitl);
-			 break;
-			
-		case 2:
-			Hitl=new Pizza(codi,label,prix2,CategoriePizza.SANS_VIANDE);
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.VIANDE);
 			tim.saveNewPizza(Hitl);
-		break;
+			break;
+
+		case 2:
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.SANS_VIANDE);
+			tim.saveNewPizza(Hitl);
+			break;
 		case 3:
-			Hitl=new Pizza(codi,label,prix2,CategoriePizza.POISSON);
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.POISSON);
 			tim.saveNewPizza(Hitl);
 			break;
 		}
-		
-        
+
 		System.out.println("\n");
-		List<Pizza>tomtom = tim.findAllPizzas();
+		List<Pizza> tomtom = tim.findAllPizzas();
 
 		for (int i = 0; i < tomtom.size(); i++) {
 			if (tomtom.get(i) != null) {

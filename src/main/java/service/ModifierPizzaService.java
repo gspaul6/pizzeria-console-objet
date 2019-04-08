@@ -39,26 +39,24 @@ public class ModifierPizzaService {
 		System.out.println("1. Viande");
 		System.out.println("2. Sans_viande");
 		System.out.println("3. poisson");
-		int input1=scanner.nextInt();
+		int input1 = scanner.nextInt();
 		Pizza Hitl;
-		switch(input1)
-		{
+		switch (input1) {
 		case 1:
-			 Hitl=new Pizza(codi,label,prix2,CategoriePizza.VIANDE);
-			 tim.updatePizza(g.toUpperCase(),Hitl);
-			 break;
-			
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.VIANDE);
+			tim.updatePizza(g.toUpperCase(), Hitl);
+			break;
+
 		case 2:
-			Hitl=new Pizza(codi,label,prix2,CategoriePizza.SANS_VIANDE);
-			tim.updatePizza(g.toUpperCase(),Hitl);
-		break;
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.SANS_VIANDE);
+			tim.updatePizza(g.toUpperCase(), Hitl);
+			break;
 		case 3:
-			Hitl=new Pizza(codi,label,prix2,CategoriePizza.POISSON);
-			tim.updatePizza(g.toUpperCase(),Hitl);
+			Hitl = new Pizza(codi, label, prix2, CategoriePizza.POISSON);
+			tim.updatePizza(g.toUpperCase(), Hitl);
 			break;
 		}
-		
-		
+
 		System.out.println("\n");
 		List<Pizza> timtim = tim.findAllPizzas();
 		for (int i = 0; i < timtim.size(); i++) {

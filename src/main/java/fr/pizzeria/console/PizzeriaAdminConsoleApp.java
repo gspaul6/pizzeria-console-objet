@@ -1,27 +1,25 @@
 package fr.pizzeria.console;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import fr.pizzeria.model.AppService;
 import fr.pizzeria.model.DataAccessException;
-import fr.pizzeria.model.Pizza;
 import persistence.IPizzaDao;
-import persistence.PizzaBddDao;
 import persistence.PizzaMemDao;
-import service.*;
+import service.AjouterPizzaService;
+import service.ListerPizzasService;
+import service.ModifierPizzaService;
+import service.SupprimerPizzaService;
 
 public class PizzeriaAdminConsoleApp {
-
+	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 	public static Scanner tryone = new Scanner(System.in);
-   public static IPizzaDao Napoli =new PizzaMemDao();
-   //public static IPizzaDao Napoli =new PizzaBddDao();
+	public static IPizzaDao Napoli = new PizzaMemDao();
+	// public static IPizzaDao Napoli =new PizzaBddDao();
 
 	// show the menu
 	public static void showmenu() {
@@ -48,76 +46,71 @@ public class PizzeriaAdminConsoleApp {
 
 	}
 
-
 	public static void sortirpizza() {
 		clearScreen();
 		submenu();
 		System.out.println("Au revoir mon amor ☹");
 	}
-	
-	
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException{
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-
+		new AppService().executer("hello world");
 		showmenu();
 		boolean game = false;
 		while (!game) {
 			try {
-				
-			
-			System.out.println("Enter your choice");
-			int a = tryone.nextInt();
-			switch (a) {
-			case 1:
-				clearScreen();
-				submenu();
-				ListerPizzasService tim=new ListerPizzasService();
-				tim.executeUC(tryone, Napoli);
-				game = true;
-				break;
 
-			case 2:
-				clearScreen();
-				submenu();
-				AjouterPizzaService jim=new AjouterPizzaService();
-				jim.executeUC(tryone, Napoli);			
-				game = true;
-				break;
+				System.out.println("Enter your choice");
+				int a = tryone.nextInt();
+				switch (a) {
+				case 1:
+					clearScreen();
+					submenu();
+					ListerPizzasService tim = new ListerPizzasService();
+					tim.executeUC(tryone, Napoli);
+					game = true;
+					break;
 
-			case 3:
-				clearScreen();
-				submenu();
-				ModifierPizzaService lim=new ModifierPizzaService();
-				lim.executeUC(tryone, Napoli);	
-				game = true;
-				break;
+				case 2:
+					clearScreen();
+					submenu();
+					AjouterPizzaService jim = new AjouterPizzaService();
+					jim.executeUC(tryone, Napoli);
+					game = true;
+					break;
 
-			case 4:
-				clearScreen();
-				submenu();
-				SupprimerPizzaService mim=new SupprimerPizzaService();
-				mim.executeUC(tryone, Napoli);
-				game = true;
-				break;
-			
-			case 5:
-				clearScreen();
-				submenu();
-				sortirpizza();
-				game = true;
-				break;
+				case 3:
+					clearScreen();
+					submenu();
+					ModifierPizzaService lim = new ModifierPizzaService();
+					lim.executeUC(tryone, Napoli);
+					game = true;
+					break;
 
-			case 99:
-				clearScreen();
-				submenu();
-				sortirpizza();
-				game = true;
-				break;
-			}
+				case 4:
+					clearScreen();
+					submenu();
+					SupprimerPizzaService mim = new SupprimerPizzaService();
+					mim.executeUC(tryone, Napoli);
+					game = true;
+					break;
+
+				case 5:
+					clearScreen();
+					submenu();
+					sortirpizza();
+					game = true;
+					break;
+
+				case 99:
+					clearScreen();
+					submenu();
+					sortirpizza();
+					game = true;
+					break;
+				}
 			} catch (DataAccessException e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
+				LOG.error(e.getMessage());
 			}
 
 		}

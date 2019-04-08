@@ -19,16 +19,14 @@ public class ListerPizzasService {
 		// TODO Auto-generated method stub
 
 		List<Pizza> tomtom = tim.findAllPizzas();
-        Iterator<Pizza>tom=tomtom.iterator();
-        {
-        	while(tom.hasNext())
-        	{
-        		
-        		System.out.println(" "+tom.next());
-        	}
-        }
-		
-		
+		Iterator<Pizza> tom = tomtom.iterator();
+		{
+			while (tom.hasNext()) {
+
+				System.out.println(" " + tom.next());
+			}
+		}
+
 	}
 
 }
