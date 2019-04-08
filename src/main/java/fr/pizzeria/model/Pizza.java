@@ -11,8 +11,7 @@ public class Pizza {
 	private String libelle;
 	private double prix;
 	private static int compteur;
-<<<<<<< HEAD
-=======
+
 	public static int getCompteur() {
 		return compteur;
 	}
@@ -22,6 +21,7 @@ public class Pizza {
 	}
 
 	private CategoriePizza categorie;
+
 	public CategoriePizza getCategorie() {
 		return categorie;
 	}
@@ -29,7 +29,6 @@ public class Pizza {
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;
 	}
->>>>>>> 25fe030d899a7c0152dca7b83670f59b97c6354a
 
 	/**
 	 * @return id
@@ -123,51 +122,34 @@ public class Pizza {
 		this.prix = prix;
 
 	}
-<<<<<<< HEAD
-=======
-	public Pizza(int id,String code, String libelle, double prix,CategoriePizza cat) {
-		this.id=id;
-		this.code=code;
-		this.libelle=libelle;
-		this.prix=prix;
-		this.categorie=cat;
-		
+
+	public Pizza(int id, String code, String libelle, double prix, CategoriePizza cat) {
+		this.id = id;
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.categorie = cat;
+
 	}
-	
+
 	public Pizza(String codi, String label, double prix2, CategoriePizza cat) {
 		// TODO Auto-generated constructor stub
-		
-		this.code=codi;
-		this.libelle=label;
-		this.prix=prix2;
-		this.categorie=cat;
-		
-		Pizza.compteur+=1;
-		this.id=Pizza.compteur;
-	}
->>>>>>> 25fe030d899a7c0152dca7b83670f59b97c6354a
 
-	/**
-	 * to show everything
-	 */
-<<<<<<< HEAD
+		this.code = codi;
+		this.libelle = label;
+		this.prix = prix2;
+		this.categorie = cat;
+
+		Pizza.compteur += 1;
+		this.id = Pizza.compteur;
+	}
+
 	public void afficher() {
-		System.out.println(+this.id + "|" + this.code + "|" + this.libelle + "|" + this.prix);
+		System.out.println(+this.id + "|" + this.code + "|" + this.libelle + "|" + this.prix + "|" + this.categorie);
 	}
 
 	public String toString() {
-		return this.id + "|" + this.code + "|" + this.libelle + "|" + this.prix;
+		return this.id + "|" + this.code + "|" + this.libelle + "|" + this.prix + "|" + this.categorie;
 
-=======
-	
-	public void afficher()
-	{
-		System.out.println(+this.id+"|"+this.code+"|"+this.libelle+"|"+this.prix );
-	}
-
-	public String toString(){
-		return this.id+"|"+this.code+"|"+this.libelle+"|"+this.prix+"|" +this.categorie;
-		
->>>>>>> 25fe030d899a7c0152dca7b83670f59b97c6354a
 	}
 }
