@@ -14,18 +14,17 @@ import fr.pizzeria.model.DataAccessException;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaBddDao implements IPizzaDao {
-private String url;
-private String user;
-private String pass;
-
+	private String url;
+	private String user;
+	private String pass;
 
 	public PizzaBddDao() {
-	super();
-	ResourceBundle bundle=ResourceBundle.getBundle("jdbc");
-	this.url=bundle.getString("jdbc.url");
-	this.user=bundle.getString("jdbc.user");
-	this.pass=bundle.getString("jdbc.pass");
-}
+		super();
+		ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
+		this.url = bundle.getString("jdbc.url");
+		this.user = bundle.getString("jdbc.user");
+		this.pass = bundle.getString("jdbc.pass");
+	}
 
 	@Override
 	public List<Pizza> findAllPizzas() {
@@ -33,7 +32,7 @@ private String pass;
 		List<Pizza> listePizzas = new ArrayList<>();
 		String jdbcUrl = "jdbc:mysql://localhost:3306/bdd_pizzeria";
 		// TODO Auto-generated method stub
-		try(	Connection uneConnexion = DriverManager.getConnection(jdbcUrl, "root", "");
+		try (Connection uneConnexion = DriverManager.getConnection(jdbcUrl, "root", "");
 
 				Statement st = uneConnexion.createStatement();
 
@@ -43,10 +42,8 @@ private String pass;
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Etape 2 - Définition de la JDBC URL
-			
 
 			// Etape 3 - Création de la connexion
-		
 
 			// Etape 5 - exploitation des résultats
 			while (rs.next()) {
@@ -61,8 +58,7 @@ private String pass;
 				// +"|"+ " libelle = " + label +"|"+ " " + " prix = "+ price );
 			}
 			// Etape 6 - Fermeture des ressources
-		
-			
+
 			return listePizzas;
 
 		} catch (SQLException e) {
@@ -70,18 +66,13 @@ private String pass;
 		} catch (ClassNotFoundException e) {
 			throw new DataAccessException("Problème no name", e);
 		}
-		
-		
-
 
 	}
 
 	@Override
 	public void saveNewPizza(Pizza pizza) {
 		// TODO Auto-generated method stub
-		
 
-		
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -129,18 +120,14 @@ private String pass;
 			// Etape 3 - Création de la connexion
 			Connection uneConnexion = DriverManager.getConnection(jdbcUrl, "root", "");
 			Statement st = uneConnexion.createStatement();
-		
-					PreparedStatement updatePizzaSt = uneConnexion.prepareStatement("UPDATE PIZZA SET codepizza=?,libelle=?,prix=?  where codepizza=?");
-					updatePizzaSt.setString(1, pizza.getCode());
-					updatePizzaSt.setString(2, pizza.getLibelle());
-					updatePizzaSt.setDouble(3, pizza.getPrix());
-					updatePizzaSt.setString(4, codePizza);
-					updatePizzaSt.executeUpdate();
-				
-			
 
-
-			
+			PreparedStatement updatePizzaSt = uneConnexion
+					.prepareStatement("UPDATE PIZZA SET codepizza=?,libelle=?,prix=?  where codepizza=?");
+			updatePizzaSt.setString(1, pizza.getCode());
+			updatePizzaSt.setString(2, pizza.getLibelle());
+			updatePizzaSt.setDouble(3, pizza.getPrix());
+			updatePizzaSt.setString(4, codePizza);
+			updatePizzaSt.executeUpdate();
 
 			// Etape 6 - Fermeture des ressources
 
@@ -154,13 +141,12 @@ private String pass;
 			throw new DataAccessException("Problème no name", e);
 		}
 
-
 	}
 
 	@Override
 	public void deletePizza(String codePizza) {
 		// TODO Auto-generated method stub
-Pizza pizza=new Pizza();
+		Pizza pizza = new Pizza();
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -172,13 +158,12 @@ Pizza pizza=new Pizza();
 			Connection uneConnexion = DriverManager.getConnection(jdbcUrl, "root", "");
 			Statement st = uneConnexion.createStatement();
 			ResultSet rs = st.executeQuery("select * from pizza");
-			while(rs.next())
-			{
-				if (codePizza==pizza.getCode()&& codePizza==rs.getString("codepizza"))
-				{
-							PreparedStatement deletePizzaSt = uneConnexion.prepareStatement("DELETE From pizza where codepizza=?");
-							deletePizzaSt.setString(1, codePizza);
-							deletePizzaSt.executeUpdate();
+			while (rs.next()) {
+				if (codePizza == pizza.getCode() && codePizza == rs.getString("codepizza")) {
+					PreparedStatement deletePizzaSt = uneConnexion
+							.prepareStatement("DELETE From pizza where codepizza=?");
+					deletePizzaSt.setString(1, codePizza);
+					deletePizzaSt.executeUpdate();
 				}
 			}
 
