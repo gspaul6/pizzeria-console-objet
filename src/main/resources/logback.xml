@@ -20,25 +20,17 @@
 	
 	
 	<!-- politique de log pour les classes du package dev.console -->
-	<logger name="fr.pizzeria.console" level="INFO">
+	<logger name="dev.Pizza" level="INFO" >
 		<appender-ref ref="FILE-1" />
 	</logger>
-	
-<appender name="FILE-2" class="ch.qos.logback.core.FileAppender">
-		<file>exception.log</file>
-		<append>true</append>
-		<immediateFlush>true</immediateFlush>
-		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-		</encoder>
-	</appender>
-	
-	<logger name="fr.pizzeria.console" level="ERROR">
-		<appender-ref ref="FILE-2" />
+	<!-- politique de log pour les classes du package dev.console -->
+	<logger name="dev.Service" level="INFO" additivity="false">
+		<appender-ref ref="FILE-1" />
 	</logger>
+
 	<!-- règle de logs par défaut. Ici : niveau INFO vers la sortie standard -->
-	<root level="DEBUG">
+	<!-- <root level="DEBUG">
 		<appender-ref ref="STDOUT" />
-	</root> 
+	</root>  -->
 	
 </configuration>
