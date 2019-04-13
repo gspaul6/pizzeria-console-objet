@@ -58,14 +58,39 @@ public class PizzaJpaDao implements IPizzaDao {
 
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
-		
+		Pizza nePizz = null;
+		EntityManager em1 = this.openConnection();
+		EntityTransaction transaction = em1.getTransaction();
+		transaction.begin();
+		if (pizzaExists(codePizza)) {
+			nePizz = findPizzaByCode(codePizza);
+			nePizz.setCode(pizza.getCode());
+			nePizz.setLibelle(pizza.getLibelle());
+			nePizz.setPrix(pizza.getPrix());
+			nePizz.setCategorie(pizza.getCategorie());
+			em1.merge(nePizz);
+		} else {
+			System.out.println("it doesnt exist");
+		}
+		transaction.commit();
+		this.closeConnection(em1);
 
 	}
 
 	@Override
 	public void deletePizza(String codePizza) {
-		// TODO Auto-generated method stub
+		Pizza p=null;
+		EntityManager em1 = this.openConnection();
+		EntityTransaction transaction = em1.getTransaction();
+		transaction.begin();
+		p=findPizzaByCode(codePizza);
+		Pizza h = em1.find(Pizza.class, p.getId());
 
+		if (h != null){
+		em1.remove(h);
+		}
+		transaction.commit();
+		this.closeConnection(em1);
 	}
 
 	@Override
@@ -76,7 +101,7 @@ public class PizzaJpaDao implements IPizzaDao {
 		transaction.begin();
 		TypedQuery<Pizza> query = em1.createQuery("select p from Pizza p where p.code=:ref", Pizza.class);
 		query.setParameter("ref", codePizza);
-		p = query.getResultList().get(0);
+		p = query.getSingleResult();
 		transaction.commit();
 		this.closeConnection(em1);
 		return p;
@@ -90,19 +115,17 @@ public class PizzaJpaDao implements IPizzaDao {
 		transaction.begin();
 		TypedQuery<Pizza> query = em1.createQuery("select p from Pizza p where p.code=:ref", Pizza.class);
 		query.setParameter("ref", codePizza);
-		listPizza=query.getResultList();
+		listPizza = query.getResultList();
 		boolean pizzIsThere;
-		if(listPizza.isEmpty())
-		{
-			pizzIsThere =false;
-			}
-		else{
-			pizzIsThere=true;
+		if (listPizza.isEmpty()) {
+			pizzIsThere = false;
+		} else {
+			pizzIsThere = true;
 		}
 		transaction.commit();
 		this.closeConnection(em1);
 		return pizzIsThere;
-		
+
 	}
 
 }
