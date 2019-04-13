@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import fr.pizzeria.model.AppService;
 import fr.pizzeria.model.DataAccessException;
 import persistence.IPizzaDao;
+import persistence.PizzaJpaDao;
 import persistence.PizzaMemDao;
 import service.AjouterPizzaService;
 import service.ListerPizzasService;
@@ -18,7 +19,8 @@ import service.SupprimerPizzaService;
 public class PizzeriaAdminConsoleApp {
 	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 	public static Scanner tryone = new Scanner(System.in);
-	public static IPizzaDao Napoli = new PizzaMemDao();
+	public static IPizzaDao Napoli = new PizzaJpaDao();
+	//public static IPizzaDao Napoli = new PizzaMemDao();
 	// public static IPizzaDao Napoli =new PizzaBddDao();
 
 	// show the menu
@@ -52,64 +54,62 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("Au revoir mon amor ☹");
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
-		new AppService().executer("hello world");
-		showmenu();
-		boolean game = false;
-		while (!game) {
+		
+		boolean game = true;
+
+		while (game) {
 			try {
 
+				showmenu();
 				System.out.println("Enter your choice");
-				int a = tryone.nextInt();
+				Integer a = Integer.parseInt(tryone.next());
 				switch (a) {
 				case 1:
 					clearScreen();
-					submenu();
+					
 					ListerPizzasService tim = new ListerPizzasService();
 					tim.executeUC(tryone, Napoli);
-					game = true;
 					break;
 
 				case 2:
-					clearScreen();
-					submenu();
+					//clearScreen();
+					
 					AjouterPizzaService jim = new AjouterPizzaService();
 					jim.executeUC(tryone, Napoli);
-					game = true;
 					break;
 
 				case 3:
 					clearScreen();
-					submenu();
+					
 					ModifierPizzaService lim = new ModifierPizzaService();
 					lim.executeUC(tryone, Napoli);
-					game = true;
 					break;
 
 				case 4:
 					clearScreen();
-					submenu();
+					
 					SupprimerPizzaService mim = new SupprimerPizzaService();
 					mim.executeUC(tryone, Napoli);
-					game = true;
 					break;
 
 				case 5:
 					clearScreen();
-					submenu();
+					
 					sortirpizza();
-					game = true;
 					break;
 
 				case 99:
 					clearScreen();
-					submenu();
+					
 					sortirpizza();
-					game = true;
+					game = false;
 					break;
 				}
 			} catch (DataAccessException e) {
+				LOG.error(e.getMessage());
+			} catch (Exception e) {
 				LOG.error(e.getMessage());
 			}
 

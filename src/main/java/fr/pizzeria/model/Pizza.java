@@ -1,7 +1,10 @@
+
 package fr.pizzeria.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "Pizza")
+@Table(name = "pizzas")
 public class Pizza {
 
 	@Id
@@ -39,6 +42,7 @@ public class Pizza {
 		Pizza.compteur = compteur;
 	}
 
+	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
 
 	public CategoriePizza getCategorie() {

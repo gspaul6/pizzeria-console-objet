@@ -56,13 +56,13 @@ public class ModifierPizzaService {
 			break;
 		}
 
-		System.out.println("\n");
-		List<Pizza> timtim = tim.findAllPizzas();
-		for (int i = 0; i < timtim.size(); i++) {
-			if (timtim.get(i) != null) {
-				System.out.println(timtim.get(i));
-			}
-		}
+//		System.out.println("\n");
+//		List<Pizza> timtim = tim.findAllPizzas();
+//		for (int i = 0; i < timtim.size(); i++) {
+//			if (timtim.get(i) != null) {
+//				System.out.println(timtim.get(i));
+//			}
+//		}
 	}
 
 }

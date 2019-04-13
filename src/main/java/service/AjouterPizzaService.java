@@ -26,32 +26,32 @@ public class AjouterPizzaService extends MenuService {
 		System.out.println("1. Viande");
 		System.out.println("2. Sans_viande");
 		System.out.println("3. poisson");
-		int input1 = scanner.nextInt();
-		Pizza Hitl;
+		String cateChoice = scanner.next();
+		Integer input1= Integer.parseInt(cateChoice);
+		
+		CategoriePizza cat=null;
 		switch (input1) {
 		case 1:
-			Hitl = new Pizza(codi, label, prix2, CategoriePizza.VIANDE);
-			tim.saveNewPizza(Hitl);
+			cat=CategoriePizza.VIANDE;
 			break;
 
 		case 2:
-			Hitl = new Pizza(codi, label, prix2, CategoriePizza.SANS_VIANDE);
-			tim.saveNewPizza(Hitl);
+			cat=CategoriePizza.SANS_VIANDE;
 			break;
 		case 3:
-			Hitl = new Pizza(codi, label, prix2, CategoriePizza.POISSON);
-			tim.saveNewPizza(Hitl);
+			cat=CategoriePizza.POISSON;
 			break;
 		}
-
-		System.out.println("\n");
-		List<Pizza> tomtom = tim.findAllPizzas();
-
-		for (int i = 0; i < tomtom.size(); i++) {
-			if (tomtom.get(i) != null) {
-				System.out.println(tomtom.get(i));
-			}
-		}
+		
+		tim.saveNewPizza(new Pizza(codi, label, prix2, cat));
+//		System.out.println("\n");
+//		List<Pizza> tomtom = tim.findAllPizzas();
+//
+//		for (int i = 0; i < tomtom.size(); i++) {
+//			if (tomtom.get(i) != null) {
+//				System.out.println(tomtom.get(i));
+//			}
+//		}
 	}
 
 }
