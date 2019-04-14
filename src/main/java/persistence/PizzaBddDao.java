@@ -193,4 +193,10 @@ public class PizzaBddDao implements IPizzaDao {
 		return false;
 	}
 
+	@Override
+	public void closeFactory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

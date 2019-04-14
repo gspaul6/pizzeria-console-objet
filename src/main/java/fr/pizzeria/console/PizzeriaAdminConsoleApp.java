@@ -74,7 +74,7 @@ public class PizzeriaAdminConsoleApp {
 					break;
 
 				case 2:
-					//clearScreen();
+					clearScreen();
 					
 					AjouterPizzaService jim = new AjouterPizzaService();
 					jim.executeUC(tryone, Napoli);
@@ -105,6 +105,8 @@ public class PizzeriaAdminConsoleApp {
 					
 					sortirpizza();
 					game = false;
+					Napoli.closeFactory();
+					LOG.info("Les services JPA ont bien été fermés");
 					break;
 				}
 			} catch (DataAccessException e) {

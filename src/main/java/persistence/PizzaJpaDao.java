@@ -24,7 +24,10 @@ public class PizzaJpaDao implements IPizzaDao {
 	private void closeConnection(EntityManager em) {
 		em.close();
 	}
-
+     
+	public void closeFactory(){
+		emf.close();
+	}
 	@Override
 	public List<Pizza> findAllPizzas() {
 
@@ -51,7 +54,12 @@ public class PizzaJpaDao implements IPizzaDao {
 		EntityManager em1 = this.openConnection();
 		EntityTransaction transaction = em1.getTransaction();
 		transaction.begin();
-		em1.persist(pizza);
+		Pizza newPizza = new Pizza();
+		newPizza.setCode(pizza.getCode());
+		newPizza.setLibelle(pizza.getLibelle());
+		newPizza.setPrix(pizza.getPrix());
+		newPizza.setCategorie(pizza.getCategorie());
+		em1.persist(newPizza);
 		transaction.commit();
 		this.closeConnection(em1);
 	}

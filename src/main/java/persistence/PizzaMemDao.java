@@ -102,4 +102,10 @@ public class PizzaMemDao implements IPizzaDao {
 
 	}
 
+	@Override
+	public void closeFactory() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
